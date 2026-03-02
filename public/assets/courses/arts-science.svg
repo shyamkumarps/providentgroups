@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250">
+  <defs>
+    <linearGradient id="cas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F766E"/>
+      <stop offset="100%" style="stop-color:#0D5C56"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#cas)"/>
+  <text x="200" y="130" font-family="sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">Arts &amp; Science</text>
+</svg>

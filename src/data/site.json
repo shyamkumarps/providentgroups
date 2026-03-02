@@ -1,0 +1,46 @@
+{
+  "brand": {
+    "name": "Provident Groups",
+    "tagline": "Guiding Your Academic Journey with Confidence",
+    "taglineLong": "From Career Confusion to University Admission — We Handle It"
+  },
+  "contact": {
+    "phone": "+91 98765 43210",
+    "email": "info@providentgroups.com",
+    "address": "Bangalore, Karnataka, India",
+    "whatsapp": "919876543210",
+    "hours": "Mon–Sat: 9:00 AM – 6:00 PM",
+    "mapsUrl": "https://maps.app.goo.gl/NS5peQPbhmPskYKKA",
+    "mapsEmbedUrl": "https://www.google.com/maps?q=Bikarnakatte+Kaikamba,+Mangaluru,+Karnataka+575005&output=embed"
+  },
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about" },
+    { "label": "Courses", "href": "/courses" },
+    { "label": "Gallery", "href": "/gallery" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "hero": {
+    "headline": "Expert Career Guidance & University Admissions Support",
+    "subtext": "Partner with Karnataka's trusted education consultancy. We help students secure admissions to top colleges in Nursing, Engineering, Management, and more.",
+    "ctaPrimary": "Book Consultation",
+    "ctaSecondary": "Explore Courses",
+    "slides": [
+      { "image": "/assets/hero/friends-learning-grass.jpg" },
+      { "image": "/assets/hero/medium-shot-graduate-student.jpg" },
+      { "image": "/assets/hero/team-meeting-startups.jpg" }
+    ]
+  },
+  "stats": [
+    { "value": 10, "suffix": "+", "label": "Years of Expertise" },
+    { "value": 150, "suffix": "+", "label": "University Partnerships" },
+    { "value": 5000, "suffix": "+", "label": "Successful Admissions" },
+    { "value": 100, "suffix": "%", "label": "Personalized Guidance" }
+  ],
+  "social": [
+    { "name": "Facebook", "url": "https://facebook.com", "icon": "facebook" },
+    { "name": "Instagram", "url": "https://instagram.com", "icon": "instagram" },
+    { "name": "LinkedIn", "url": "https://linkedin.com", "icon": "linkedin" },
+    { "name": "Twitter", "url": "https://twitter.com", "icon": "twitter" }
+  ]
+}

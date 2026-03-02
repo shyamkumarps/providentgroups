@@ -1,0 +1,68 @@
+[
+  {
+    "slug": "nursing",
+    "title": "Nursing",
+    "category": "Nursing",
+    "image": "/assets/courses/nursing.svg",
+    "shortDescription": "B.Sc Nursing, GNM, and allied programs at top colleges.",
+    "overview": "Our nursing programs connect you with leading institutions offering B.Sc Nursing, GNM, and post-basic specializations. We guide you through eligibility, entrance exams, and seat allocation.",
+    "eligibility": "10+2 with PCB (Physics, Chemistry, Biology) with minimum 45% aggregate. Some colleges accept PCM. Age criteria may apply.",
+    "admissionRequirements": "Valid NEET/state entrance score, 10+2 marksheet, transfer certificate, identity proof, and passport-size photographs.",
+    "careerOpportunities": "Hospital staff nurse, ICU nurse, community health nurse, nursing educator, overseas placements, and healthcare administration."
+  },
+  {
+    "slug": "engineering",
+    "title": "Engineering",
+    "category": "Engineering",
+    "image": "/assets/courses/engineering.svg",
+    "shortDescription": "B.Tech and M.Tech in CSE, ECE, Mechanical, and more.",
+    "overview": "Secure admissions to top engineering colleges for B.Tech and M.Tech across branches including Computer Science, Electronics, Mechanical, Civil, and emerging specializations.",
+    "eligibility": "10+2 with PCM (Physics, Chemistry, Mathematics) with minimum 45–50% depending on college. JEE Main / KCET / COMEDK scores considered.",
+    "admissionRequirements": "KCET/COMEDK/JEE Main rank card, 10+2 marksheet, caste certificate if applicable, and college-specific documents.",
+    "careerOpportunities": "Software engineer, core engineering roles, research, higher studies abroad, and entrepreneurship."
+  },
+  {
+    "slug": "management",
+    "title": "Management",
+    "category": "Management",
+    "image": "/assets/courses/management.svg",
+    "shortDescription": "MBA, BBA, and PGDM from reputed business schools.",
+    "overview": "We help you get into top MBA, BBA, and PGDM programs in Karnataka and across India. From CAT/MAT preparation guidance to college shortlisting and admission support.",
+    "eligibility": "Graduation in any discipline for MBA/PGDM (50% typically). 10+2 for BBA. CAT, MAT, CMAT, or state-level scores accepted.",
+    "admissionRequirements": "Graduation marksheet, entrance score card, work experience certificate if any, and statement of purpose where required.",
+    "careerOpportunities": "Corporate roles in marketing, finance, HR, operations, consulting, and leadership positions."
+  },
+  {
+    "slug": "medical",
+    "title": "Medical",
+    "category": "Medical",
+    "image": "/assets/courses/medical.svg",
+    "shortDescription": "MBBS, BDS, and allied medical courses.",
+    "overview": "Comprehensive support for MBBS, BDS, and other medical degree admissions. We work with colleges that accept NEET scores and state quotas.",
+    "eligibility": "10+2 with PCB, minimum 50% aggregate. Valid NEET score. Age and attempt limits as per NMC guidelines.",
+    "admissionRequirements": "NEET score card, 10+2 certificates, caste/income certificate if applicable, and medical fitness certificate.",
+    "careerOpportunities": "Doctor, dentist, specialist, hospital administration, and research in medical sciences."
+  },
+  {
+    "slug": "pharmacy",
+    "title": "Pharmacy",
+    "category": "Pharmacy",
+    "image": "/assets/courses/pharmacy.svg",
+    "shortDescription": "B.Pharm, D.Pharm, M.Pharm from top institutions.",
+    "overview": "Admission support for B.Pharm, D.Pharm, and M.Pharm programs at PCI-approved colleges. We assist with counseling and documentation.",
+    "eligibility": "10+2 with PCB or PCM. Minimum 45% for B.Pharm. GPAT for M.Pharm. State entrance exams where applicable.",
+    "admissionRequirements": "10+2 marksheet, entrance rank/score, transfer certificate, and identity proof.",
+    "careerOpportunities": "Pharmacist, clinical research, pharmaceutical industry, regulatory affairs, and higher studies."
+  },
+  {
+    "slug": "arts-science",
+    "title": "Arts & Science",
+    "category": "Arts & Science",
+    "image": "/assets/courses/arts-science.svg",
+    "shortDescription": "B.A, B.Sc, B.Com and postgraduate programs.",
+    "overview": "Wide range of undergraduate and postgraduate programs in Arts, Science, and Commerce from reputed universities and autonomous colleges.",
+    "eligibility": "10+2 in relevant stream. Minimum marks as per university. Some courses require entrance tests.",
+    "admissionRequirements": "10+2 marksheet, caste certificate if applicable, and university-specific application forms.",
+    "careerOpportunities": "Teaching, research, corporate roles, civil services, and sector-specific careers."
+  }
+]

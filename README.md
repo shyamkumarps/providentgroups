@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Provident Groups – Education Consultancy Website
+
+A premium, conversion-focused website for **Provident Groups**, an education consultancy and university admissions firm. Built with Next.js (App Router), TypeScript, Tailwind CSS, and GSAP for scroll animations and smooth UX.
+
+## Features
+
+- **Homepage**: Hero, features, about preview, stats counters, courses preview, promo banner, lead form, testimonials carousel, colleges grid, and CTA
+- **About**: Mission, vision, and why choose us
+- **Courses**: Filterable and searchable course list with detail pages (Overview, Eligibility, Admission, Careers)
+- **Gallery**: Photos/Videos tabs with lightbox
+- **Contact**: Form (submits to `/api/lead`), contact details, WhatsApp/Call buttons, optional map
+- **Admin**: Stub page for Phase 2
+- **Lead API**: `POST /api/lead` — validates and optionally sends email via Resend
+- **Data-driven**: All content from JSON in `src/data`; data layer can be swapped for FastAPI later
+
+## Tech Stack
+
+- **Next.js 16** (App Router) + **TypeScript**
+- **Tailwind CSS** (v4)
+- **GSAP** + **ScrollTrigger** (scroll reveals, count-up, parallax)
+- **Lenis** (smooth scrolling, integrated with ScrollTrigger)
+- **next/image** for images
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm (or yarn/pnpm)
+
+### Install and run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/              # Routes and API
+  components/       # Layout, sections, UI primitives
+  data/             # JSON content (site, courses, testimonials, colleges, gallery)
+  lib/              # Data access, animations utils, fonts
+  hooks/            # GSAP/Lenis hooks
+public/
+  assets/           # Logo, hero, course/gallery/college images, patterns
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Where to Edit Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All editable content lives in **`src/data/`**:
 
-## Deploy on Vercel
+| File | Purpose |
+|------|--------|
+| `site.json` | Brand name, tagline, contact info, nav, hero copy, stats, social links |
+| `courses.json` | Course list (slug, title, category, image, descriptions, eligibility, etc.) |
+| `testimonials.json` | Testimonial quotes, names, roles |
+| `colleges.json` | College names, logos, locations |
+| `gallery.json` | Gallery items (src, alt, category: photo/video) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Change text, add/remove courses or testimonials, and update contact details there. The UI reads from these files via `src/lib/data.ts`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Where to Replace Assets
+
+Placeholder assets are under **`public/assets/`**:
+
+| Path | What to replace |
+|------|------------------|
+| `public/assets/logo.svg` | Your final logo (SVG or PNG) |
+| `public/assets/hero.svg` | Hero background (use `hero.jpg` or `hero.mp4` and update `site.json` hero.backgroundImage / backgroundVideo) |
+| `public/assets/courses/*.svg` | Course category images (nursing, engineering, etc.) |
+| `public/assets/gallery/*.svg` | Gallery photos/video thumbnails |
+| `public/assets/colleges/*.svg` | College logos |
+
+Update references in the JSON files if you change file names or add new images. The app uses `next/image` for optimization.
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill as needed:
+
+| Variable | Purpose |
+|----------|---------|
+| `RESEND_API_KEY` | (Optional) Resend API key to email lead form submissions |
+| `LEAD_EMAIL_TO` | (Optional) Email address to receive leads |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number for floating button (e.g. `919876543210`) |
+| `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` | (Optional) Google Maps embed URL for contact page |
+
+Without `RESEND_API_KEY` and `LEAD_EMAIL_TO`, lead submissions are logged to the server console and the API still returns success.
+
+## Connecting a FastAPI Backend Later
+
+The data layer is in **`src/lib/data.ts`**. It currently imports JSON and exposes:
+
+- `getSiteData()`
+- `getCourses()` / `getCourseBySlug(slug)`
+- `getTestimonials()`
+- `getColleges()`
+- `getGallery()`
+
+To switch to FastAPI:
+
+1. Replace the JSON imports with `fetch()` calls to your API (e.g. `GET /api/site`, `GET /api/courses`, etc.).
+2. Optionally make the functions `async` and use them in server components or in `getServerSideProps`-style data fetching.
+3. Keep the same return shapes so the UI components do not need to change.
+
+## Deployment
+
+The app is static-friendly where possible (home, about, courses, gallery, contact, course detail pages). The only dynamic route is `POST /api/lead`.
+
+- **Vercel**: Connect the repo and deploy; set env vars in the dashboard.
+- **Other hosts**: Run `npm run build` and `npm start`, or use a Node server that runs the built app.
+
+## License
+
+Private – Provident Groups.

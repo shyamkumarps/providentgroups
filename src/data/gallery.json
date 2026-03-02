@@ -1,0 +1,8 @@
+[
+  { "src": "/assets/gallery/gallery-1.svg", "alt": "Campus event", "category": "photo", "thumbnail": "/assets/gallery/gallery-1.svg" },
+  { "src": "/assets/gallery/gallery-2.svg", "alt": "Student orientation", "category": "photo", "thumbnail": "/assets/gallery/gallery-2.svg" },
+  { "src": "/assets/gallery/gallery-3.svg", "alt": "Consultation session", "category": "photo", "thumbnail": "/assets/gallery/gallery-3.svg" },
+  { "src": "/assets/gallery/gallery-4.svg", "alt": "College visit", "category": "photo", "thumbnail": "/assets/gallery/gallery-4.svg" },
+  { "src": "/assets/gallery/gallery-5.svg", "alt": "Workshop", "category": "photo", "thumbnail": "/assets/gallery/gallery-5.svg" },
+  { "src": "/assets/gallery/gallery-6.svg", "alt": "Success celebration", "category": "photo", "thumbnail": "/assets/gallery/gallery-6.svg" }
+]
