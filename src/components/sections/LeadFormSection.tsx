@@ -114,7 +114,7 @@ export function LeadFormSection() {
               placeholder="you@example.com"
             />
           </div>
-          <div className="form-field">
+          <div className="form-field relative z-20">
             <label htmlFor="course" className="block text-sm font-medium text-primary mb-1">Interested Course</label>
             <CustomSelect
               id="course"
