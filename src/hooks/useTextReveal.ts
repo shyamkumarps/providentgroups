@@ -48,9 +48,12 @@ function wrapText(el: HTMLElement, mode: TextRevealMode): Element[] {
     span.style.display = "inline-block";
     span.style.overflow = "hidden";
     span.style.verticalAlign = "top";
+    if (/\s/.test(char)) {
+      span.style.minWidth = "0.25em";
+    }
     const inner = document.createElement("span");
     inner.style.display = "inline-block";
-    inner.textContent = char;
+    inner.textContent = /\s/.test(char) ? "\u00A0" : char;
     span.appendChild(inner);
     el.appendChild(span);
     return inner;

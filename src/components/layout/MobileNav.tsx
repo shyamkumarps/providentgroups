@@ -47,7 +47,6 @@ export function MobileNav({ isOpen, onClose, nav }: MobileNavProps) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!overlayRef.current || !panelRef.current) return;
     if (isOpen) {
       const scrollY = window.scrollY;
       document.body.style.overflow = "hidden";
@@ -55,12 +54,10 @@ export function MobileNav({ isOpen, onClose, nav }: MobileNavProps) {
       document.body.style.top = `-${scrollY}px`;
       document.body.style.left = "0";
       document.body.style.right = "0";
-      gsap.to(overlayRef.current, { opacity: 1, duration: 0.2 });
-      gsap.fromTo(
-        panelRef.current,
-        { x: "100%" },
-        { x: 0, duration: 0.3, ease: "power2.out" }
-      );
+      requestAnimationFrame(() => {
+        if (overlayRef.current) gsap.to(overlayRef.current, { opacity: 1, duration: 0.2 });
+        if (panelRef.current) gsap.fromTo(panelRef.current, { x: "100%" }, { x: 0, duration: 0.3, ease: "power2.out" });
+      });
     } else {
       const scrollY = document.body.style.top ? Math.abs(parseInt(document.body.style.top, 10)) : 0;
       document.body.style.overflow = "";
@@ -68,9 +65,11 @@ export function MobileNav({ isOpen, onClose, nav }: MobileNavProps) {
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
-      if (scrollY) window.scrollTo(0, scrollY);
-      gsap.to(overlayRef.current, { opacity: 0, duration: 0.2 });
-      gsap.to(panelRef.current, { x: "100%", duration: 0.25 });
+      requestAnimationFrame(() => {
+        if (scrollY) window.scrollTo(0, scrollY);
+      });
+      if (overlayRef.current) gsap.to(overlayRef.current, { opacity: 0, duration: 0.2 });
+      if (panelRef.current) gsap.to(panelRef.current, { x: "100%", duration: 0.25 });
     }
   }, [isOpen]);
 

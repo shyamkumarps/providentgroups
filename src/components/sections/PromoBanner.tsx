@@ -12,7 +12,7 @@ export function PromoBanner() {
   const blobRef = useRef<HTMLDivElement>(null);
 
   useGsapReveal(ref);
-  useTextReveal(headlineRef, { mode: "chars", y: 16, stagger: 0.02, start: "top 82%" });
+  useTextReveal(headlineRef, { mode: "words", y: 16, stagger: 0.04, start: "top 82%" });
   useParallax(blobRef, 0.3);
 
   const wave1 = "M0,40 C150,80 350,0 500,40 C650,80 850,0 1000,40 L1000,0 L0,0 Z";

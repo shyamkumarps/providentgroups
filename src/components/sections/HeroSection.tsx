@@ -15,6 +15,10 @@ const { hero } = site;
 
 const slides = hero.slides && hero.slides.length > 0 ? hero.slides : [{ image: "/assets/hero.svg" }];
 
+const wave1 = "M0,40 C150,80 350,0 500,40 C650,80 850,0 1000,40 L1000,0 L0,0 Z";
+const wave2 = "M0,35 C120,70 320,5 500,35 C680,65 880,5 1000,35 L1000,0 L0,0 Z";
+const wave3 = "M0,30 C180,60 300,10 500,30 C700,50 820,10 1000,30 L1000,0 L0,0 Z";
+
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -120,24 +124,20 @@ export function HeroSection() {
           </Link>
         </div>
       </div>
-      {/* Shape divider: dots behind wave (match Why Choose Us opacity); cream wave on top */}
+      {/* Bottom waves: floating animation like StatsSection; dots behind, cream waves on top */}
       <div
-        className="absolute -bottom-px left-0 w-full overflow-hidden leading-[0] z-[50] pointer-events-none"
-        style={{ transform: "rotate(180deg)" }}
+        className="absolute -bottom-px left-0 w-full h-12 sm:h-14 md:h-16 overflow-hidden z-[50] pointer-events-none"
         aria-hidden
       >
-        <div className="absolute inset-0 bg-dots-grid opacity-[0.18] pointer-events-none z-0" style={{ transform: "rotate(180deg)" }} />
-        <svg
-          className="relative block w-full h-14 sm:h-16 md:h-[55px] z-10"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          style={{ width: "calc(130% + 1.3px)" }}
-        >
-          <path
-            className="shape-fill"
-            fill="var(--background)"
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-          />
+        <div className="absolute inset-0 bg-dots-grid opacity-[0.18] pointer-events-none z-0" />
+        <svg className="absolute bottom-0 left-0 block h-12 sm:h-14 md:h-16 animate-wave-3-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 0.3 }}>
+          <path fill="var(--background)" d={wave3} />
+        </svg>
+        <svg className="absolute bottom-0 left-0 block h-12 sm:h-14 md:h-16 animate-wave-2-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 0.5 }}>
+          <path fill="var(--background)" d={wave2} />
+        </svg>
+        <svg className="absolute bottom-0 left-0 block h-12 sm:h-14 md:h-16 animate-wave-1-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 1 }}>
+          <path fill="var(--background)" d={wave1} />
         </svg>
       </div>
       {slides.length > 1 && (
