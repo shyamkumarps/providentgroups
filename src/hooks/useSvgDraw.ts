@@ -36,13 +36,21 @@ export function useSvgDraw<T extends HTMLElement>(
     const paths = container.querySelectorAll<SVGPathElement>(pathSelector);
     if (paths.length === 0) return;
 
+    const validPaths: SVGPathElement[] = [];
     paths.forEach((path) => {
-      const length = path.getTotalLength();
-      path.style.strokeDasharray = String(length);
-      path.style.strokeDashoffset = String(length);
+      try {
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = String(length);
+        path.style.strokeDashoffset = String(length);
+        validPaths.push(path);
+      } catch {
+        // Skip non-rendered paths (display:none, etc.)
+      }
     });
 
-    const tween = gsap.to(paths, {
+    if (validPaths.length === 0) return;
+
+    const tween = gsap.to(validPaths, {
       strokeDashoffset: 0,
       duration: 1,
       ease: "none",

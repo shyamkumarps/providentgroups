@@ -35,7 +35,7 @@ export function HeroSection() {
   useParallax(bgRef, 0.25);
   useScrollTimeline(sectionRef, (tl) => {
     const content = contentRef.current;
-    if (content) tl.fromTo(content, { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.96, duration: 1 });
+    if (content) tl.fromTo(content, { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.96, duration: 1, force3D: true });
   }, { start: "top top", end: "bottom top", scrub: 1 });
 
   /* One continuous marker on "Expert Career Guidance"; runs when hero section becomes visible (GSAP ScrollTrigger) */

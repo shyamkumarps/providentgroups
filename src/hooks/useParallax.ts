@@ -13,10 +13,11 @@ export function useParallax(ref: RefObject<HTMLElement | null>, speed: number = 
     if (!el || prefersReducedMotion()) return;
 
     const triggerEl = el.parentElement ?? el;
+    el.style.willChange = "transform";
     const tween = gsap.to(el, {
-      // Keep parallax local to the section so backgrounds do not drift off-screen.
       y: () => -(window.innerHeight * Math.max(0.1, speed) * 0.4),
       ease: "none",
+      force3D: true,
       scrollTrigger: {
         trigger: triggerEl,
         start: "top bottom",

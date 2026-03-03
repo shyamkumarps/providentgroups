@@ -36,7 +36,7 @@ export function useStaggerReveal<T extends HTMLElement>(
     const children = container.querySelectorAll(childSelector);
     if (children.length === 0) return;
 
-    gsap.fromTo(
+    const tween = gsap.fromTo(
       children,
       { opacity: 0, y },
       {
@@ -45,6 +45,7 @@ export function useStaggerReveal<T extends HTMLElement>(
         duration,
         stagger,
         ease,
+        force3D: true,
         scrollTrigger: {
           trigger: container,
           start,
@@ -52,6 +53,9 @@ export function useStaggerReveal<T extends HTMLElement>(
       }
     );
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
   }, [containerRef, childSelector, y, duration, stagger, ease, start]);
 }

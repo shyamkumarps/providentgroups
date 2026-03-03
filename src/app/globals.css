@@ -158,6 +158,12 @@
   animation: wave-drift-reverse 8s linear infinite;
 }
 
+@media (max-width: 767px) {
+  .noise-overlay::after {
+    display: none;
+  }
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }

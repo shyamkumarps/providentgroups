@@ -4,7 +4,6 @@ import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useStaggerReveal } from "@/hooks/useStaggerReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { prefersReducedMotion } from "@/lib/animations";
 
@@ -47,13 +46,6 @@ export function FeaturesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
-  useStaggerReveal(containerRef, {
-    childSelector: ".feature-card",
-    y: 60,
-    duration: 0.7,
-    stagger: 0.15,
-  });
-
   useEffect(() => {
     if (!containerRef.current || prefersReducedMotion()) return;
     const localTriggers: ScrollTrigger[] = [];
@@ -61,13 +53,16 @@ export function FeaturesSection() {
     const icons = containerRef.current.querySelectorAll<HTMLElement>(".feature-card .icon-wrapper");
     const cardsTween = gsap.fromTo(
       cards,
-      { scale: 0.92, rotation: -2 },
+      { scale: 0.92, rotation: -2, opacity: 0, y: 40 },
       {
         scale: 1,
         rotation: 0,
+        opacity: 1,
+        y: 0,
         duration: 0.7,
         stagger: 0.15,
         ease: "back.out(1.2)",
+        force3D: true,
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 88%",
@@ -121,12 +116,12 @@ export function FeaturesSection() {
             <Link
               key={f.title}
               href={f.href}
-              className="feature-card group relative rounded-3xl p-8 bg-white border border-primary/5 overflow-hidden transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 feature-card-shadow hover:feature-card-shadow-hover hover:-translate-y-0.5 hover:border-primary/10"
+              className="feature-card group relative rounded-3xl p-8 bg-white border border-primary/5 overflow-hidden transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 feature-card-shadow hover:feature-card-shadow-hover hover:-translate-y-0.5 hover:border-primary/10 will-change-transform"
             >
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary/20 rounded-t-3xl" aria-hidden />
               <div className="absolute inset-0 noise-overlay pointer-events-none rounded-3xl" aria-hidden />
-              <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-accent/8 blur-2xl opacity-60 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" aria-hidden />
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-primary/5 blur-xl pointer-events-none" aria-hidden />
+              <div className="hidden md:block absolute -top-8 -right-8 w-32 h-32 rounded-full bg-accent/8 blur-2xl opacity-60 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" aria-hidden />
+              <div className="hidden md:block absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-primary/5 blur-xl pointer-events-none" aria-hidden />
               <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full border border-primary/5 pointer-events-none" aria-hidden />
               <div className="relative z-10 flex flex-col h-full">
                 <div className="icon-wrapper mb-6 inline-flex w-14 h-14 items-center justify-center rounded-2xl bg-primary/8 border border-primary/10 text-primary transition-all duration-300 group-hover:border-accent/40 group-hover:text-accent group-hover:shadow-[0_0_12px_2px_rgba(249,115,22,0.12)]">
