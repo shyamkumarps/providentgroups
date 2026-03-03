@@ -16,12 +16,7 @@ export function BannerPromo() {
 
   useEffect(() => {
     if (!mounted) return;
-    const wasClosed = sessionStorage.getItem(STORAGE_KEY);
-    if (wasClosed === "true") {
-      setShowFloatingButton(true);
-    } else {
-      setModalOpen(true);
-    }
+    setShowFloatingButton(true);
   }, [mounted]);
 
   const closeModal = () => {

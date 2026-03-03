@@ -194,13 +194,13 @@ export function HeroSection() {
         >
           {hero.subtext}
         </p>
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button href="/contact" variant="primary" attentionShimmer>
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center w-56 sm:w-auto mx-auto">
+          <Button href="/contact" variant="primary" attentionShimmer className="w-full sm:w-auto">
             {hero.ctaPrimary}
           </Button>
           <Link
             href="/courses"
-            className="group/hero group relative inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 bg-white/5 px-6 py-3 font-semibold text-sm md:text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/20 hover:shadow-lg hover:shadow-white/20 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent"
+            className="group/hero group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border-2 border-white/70 bg-white/5 px-6 py-3 font-semibold text-sm md:text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/20 hover:shadow-lg hover:shadow-white/20 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent"
           >
             <span>{hero.ctaSecondary}</span>
             <span className="inline-flex shrink-0 h-5 w-0 items-center justify-center overflow-hidden opacity-0 ml-0 transition-[width,opacity,margin] duration-300 ease-out group-hover/hero:w-5 group-hover/hero:opacity-100 group-hover/hero:ml-2" aria-hidden>

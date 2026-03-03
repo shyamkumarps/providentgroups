@@ -84,7 +84,7 @@ export function StatsSection() {
                   )}
                 </span>
               </div>
-              <div className="counter-wrap text-5xl md:text-6xl font-bold text-accent mb-2">
+              <div className="counter-wrap text-3xl md:text-4xl font-bold text-accent mb-2">
                 <Counter
                   endValue={stat.value}
                   suffix={stat.suffix}

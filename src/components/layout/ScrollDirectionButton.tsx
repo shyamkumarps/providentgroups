@@ -1,29 +1,38 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export function ScrollDirectionButton() {
-  const [atBottom, setAtBottom] = useState(false);
+  const [direction, setDirection] = useState<"down" | "up">("down");
   const [visible, setVisible] = useState(false);
-
-  const checkPosition = useCallback(() => {
-    const scrollY = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const docHeight = document.documentElement.scrollHeight;
-    const nearBottom = scrollY + windowHeight >= docHeight - 100;
-
-    setAtBottom(nearBottom);
-    setVisible(scrollY > 200 || nearBottom);
-  }, []);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    checkPosition();
-    window.addEventListener("scroll", checkPosition, { passive: true });
-    return () => window.removeEventListener("scroll", checkPosition);
-  }, [checkPosition]);
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const nearBottom = scrollY + windowHeight >= docHeight - 100;
+      const scrollingUp = scrollY < lastScrollY.current;
+
+      if (nearBottom) {
+        setDirection("up");
+      } else if (scrollingUp) {
+        setDirection("up");
+      } else {
+        setDirection("down");
+      }
+
+      setVisible(scrollY > 200);
+      lastScrollY.current = scrollY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleClick = () => {
-    if (atBottom) {
+    if (direction === "up") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
@@ -34,7 +43,7 @@ export function ScrollDirectionButton() {
     <button
       type="button"
       onClick={handleClick}
-      aria-label={atBottom ? "Scroll to top" : "Scroll to bottom"}
+      aria-label={direction === "up" ? "Scroll to top" : "Scroll to bottom"}
       className={`
         fixed bottom-6 left-1/2 -translate-x-1/2 z-40
         flex items-center justify-center w-9 h-9 rounded-full
@@ -46,7 +55,7 @@ export function ScrollDirectionButton() {
         ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}
       `}
     >
-      {atBottom ? (
+      {direction === "up" ? (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
         </svg>

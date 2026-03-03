@@ -47,15 +47,15 @@
 .hero-headline-phrase::before {
   content: "";
   position: absolute;
-  left: 2px;
-  bottom: 6%;
-  height: 42%;
-  width: calc((100% - 4px) * var(--highlight-pct) / 100);
-  background: rgba(224, 118, 42, 0.72);
-  border-radius: 7px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  left: 0;
+  bottom: -4px;
+  height: 6px;
+  width: calc(100% * var(--highlight-pct) / 100);
+  background: rgba(224, 118, 42, 0.85);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(224, 118, 42, 0.3);
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
 }
 .hero-headline-text {
   position: relative;
