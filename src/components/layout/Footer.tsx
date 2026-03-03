@@ -29,10 +29,10 @@ export function Footer() {
         {/* Dots on the cream wave area */}
         <div className="absolute inset-0 bg-dots-grid opacity-40 pointer-events-none z-20" />
       </div>
-      <div className="container mx-auto px-4 pt-20 pb-12 md:pt-24 md:pb-16 max-w-6xl relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          <div>
-            <Link href="/" className="inline-block mb-4">
+      <div className="container mx-auto px-4 pt-20 pb-28 sm:pb-24 md:pt-24 md:pb-16 max-w-6xl relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-8">
+          <div className="space-y-4">
+            <Link href="/" className="inline-block">
               <Image
                 src="/assets/logo-1.png"
                 alt={brand.name}
@@ -47,7 +47,7 @@ export function Footer() {
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-white mb-4">Quick Links</h3>
+            <h3 className="font-semibold text-white mb-3">Quick Links</h3>
             <ul className="space-y-2">
               {nav.map((item) => (
                 <li key={item.href}>
@@ -62,7 +62,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-white mb-4">Contact</h3>
+            <h3 className="font-semibold text-white mb-3">Contact</h3>
             <ul className="space-y-2 text-sm text-white/80">
               <li>
                 <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="hover:text-accent transition-colors">
@@ -79,7 +79,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-white mb-4">Follow Us</h3>
+            <h3 className="font-semibold text-white mb-3">Follow Us</h3>
             <div className="flex gap-3">
               {social.map((s) => (
                 <a
@@ -107,7 +107,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-white/20 text-center text-white/60 text-sm">
+        <div className="mt-12 pt-8 border-t border-white/20 text-center text-white/60 text-sm px-4 sm:px-0">
           © {new Date().getFullYear()} {brand.name}. All rights reserved.
         </div>
       </div>

@@ -48,11 +48,11 @@ export function FooterCTA() {
             <p className="text-white/80 mb-6 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
               Get in touch with our expert counselors for personalized guidance and end-to-end admission support.
             </p>
-            <div ref={ctaWrapRef} className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-              <Button href="/contact" variant="primary">
+            <div ref={ctaWrapRef} className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+              <Button href="/contact" variant="primary" className="w-full sm:w-auto min-h-[48px] text-base">
                 Book Free Consultation
               </Button>
-              <Button href="/register" variant="secondary" className="!border-white/60 !text-white hover:!bg-white/15 hover:!border-white">
+              <Button href="/register" variant="secondary" className="!border-white/60 !text-white hover:!bg-white/15 hover:!border-white w-full sm:w-auto min-h-[48px] text-base">
                 Register Now
               </Button>
             </div>

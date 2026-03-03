@@ -23,7 +23,7 @@ export function StatsSection() {
       preserveAspectRatio="none"
       style={{ width: "200%", opacity }}
     >
-      <path fill="var(--background)" d={wavePath} />
+      <path fill="#ffffff" d={wavePath} />
     </svg>
   );
 
@@ -39,20 +39,20 @@ export function StatsSection() {
   );
 
   return (
-    <section className="section-padding pb-16 md:pb-20 bg-gradient-to-br from-primary to-primary-dark text-white relative overflow-hidden">
-      {/* Top waves: 3 layered cream waves cutting into teal */}
+    <section className="section-padding pb-16 md:pb-20 bg-gradient-to-br from-primary to-primary-dark text-white relative z-0 overflow-hidden -mt-1">
+      {/* Top waves: transparent area so section above shows through; white wave shapes cut into teal */}
       <div
-        className="absolute top-0 left-0 w-full h-12 sm:h-14 md:h-16 overflow-hidden z-20 pointer-events-none"
+        className="absolute -top-1 left-0 w-full h-12 sm:h-14 md:h-16 overflow-hidden z-20 pointer-events-none"
         aria-hidden
       >
         {waveTop(wave3, "animate-wave-3", 0.3)}
         {waveTop(wave2, "animate-wave-2", 0.5)}
         {waveTop(wave1, "animate-wave-1", 1)}
       </div>
-      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: "url(/assets/patterns/blob-1.svg)", backgroundSize: "cover" }} aria-hidden />
+      <div className="absolute inset-0 opacity-10 pointer-events-none z-[1]" style={{ backgroundImage: "url(/assets/patterns/blob-1.svg)", backgroundSize: "cover" }} aria-hidden />
       {/* Decorative illustration near bottom curve */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(120%,480px)] h-24 illustration-blob-strong"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(120%,480px)] h-24 illustration-blob-strong z-[5]"
         aria-hidden
       />
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
@@ -72,11 +72,12 @@ export function StatsSection() {
           ))}
         </div>
       </div>
-      {/* Bottom waves: 3 layered cream waves cutting into teal */}
+      {/* Bottom waves: dots behind wave (match Why Choose Us opacity); cream wave on top */}
       <div
-        className="absolute bottom-0 left-0 w-full h-12 sm:h-14 md:h-16 overflow-hidden z-10 pointer-events-none"
+        className="absolute bottom-0 left-0 w-full h-12 sm:h-14 md:h-16 overflow-hidden z-20 pointer-events-none"
         aria-hidden
       >
+        <div className="absolute inset-0 bg-dots-grid opacity-[0.18] pointer-events-none z-0" />
         {waveBottom(wave3, "animate-wave-3-reverse", 0.3)}
         {waveBottom(wave2, "animate-wave-2-reverse", 0.5)}
         {waveBottom(wave1, "animate-wave-1-reverse", 1)}

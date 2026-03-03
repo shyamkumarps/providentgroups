@@ -120,17 +120,18 @@ export function HeroSection() {
           </Link>
         </div>
       </div>
-      {/* Shape divider: custom shape (like shape divider bottom), cream fill */}
+      {/* Shape divider: dots behind wave (match Why Choose Us opacity); cream wave on top */}
       <div
-        className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-[50] pointer-events-none"
+        className="absolute -bottom-px left-0 w-full overflow-hidden leading-[0] z-[50] pointer-events-none"
         style={{ transform: "rotate(180deg)" }}
         aria-hidden
       >
+        <div className="absolute inset-0 bg-dots-grid opacity-[0.18] pointer-events-none z-0" style={{ transform: "rotate(180deg)" }} />
         <svg
-          className="relative block w-full h-14 sm:h-16 md:h-[55px]"
+          className="relative block w-full h-14 sm:h-16 md:h-[55px] z-10"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
-          style={{ width: "calc(127% + 1.3px)" }}
+          style={{ width: "calc(130% + 1.3px)" }}
         >
           <path
             className="shape-fill"
