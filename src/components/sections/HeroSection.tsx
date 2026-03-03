@@ -124,19 +124,19 @@ export function HeroSection() {
           </Link>
         </div>
       </div>
-      {/* Bottom waves: floating animation like StatsSection; dots behind, cream waves on top */}
+      {/* Bottom waves: floating animation, taller height to match PromoBanner/StatsSection presence */}
       <div
-        className="absolute -bottom-px left-0 w-full h-12 sm:h-14 md:h-16 overflow-hidden z-[50] pointer-events-none"
+        className="absolute -bottom-px left-0 w-full h-16 sm:h-20 md:h-24 overflow-hidden z-[50] pointer-events-none"
         aria-hidden
       >
         <div className="absolute inset-0 bg-dots-grid opacity-[0.18] pointer-events-none z-0" />
-        <svg className="absolute bottom-0 left-0 block h-12 sm:h-14 md:h-16 animate-wave-3-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 0.3 }}>
+        <svg className="absolute bottom-0 left-0 block h-16 sm:h-20 md:h-24 animate-wave-3-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 0.3 }}>
           <path fill="var(--background)" d={wave3} />
         </svg>
-        <svg className="absolute bottom-0 left-0 block h-12 sm:h-14 md:h-16 animate-wave-2-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 0.5 }}>
+        <svg className="absolute bottom-0 left-0 block h-16 sm:h-20 md:h-24 animate-wave-2-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 0.5 }}>
           <path fill="var(--background)" d={wave2} />
         </svg>
-        <svg className="absolute bottom-0 left-0 block h-12 sm:h-14 md:h-16 animate-wave-1-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 1 }}>
+        <svg className="absolute bottom-0 left-0 block h-16 sm:h-20 md:h-24 animate-wave-1-reverse" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ width: "200%", opacity: 1 }}>
           <path fill="var(--background)" d={wave1} />
         </svg>
       </div>
