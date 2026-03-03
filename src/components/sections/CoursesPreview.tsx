@@ -49,8 +49,8 @@ export function CoursesPreview() {
         />
         <div ref={containerRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 [perspective:800px]">
           {courses.map((course) => (
-            <Link key={course.slug} href={`/courses/${course.slug}`} className="course-card block group [transform-style:preserve-3d]">
-              <Card className="overflow-hidden p-0 h-full transition-transform duration-300 group-hover:scale-[1.02]">
+            <Link key={course.slug} href={`/courses/${course.slug}`} className="course-card block group [transform-style:preserve-3d] relative">
+              <Card hover={false} className="overflow-hidden p-0 h-full transition-all duration-300 group-hover:shadow-[0_16px_40px_rgba(0,0,0,0.1),0_0_0_1px_rgba(15,118,110,0.08),0_8px_24px_rgba(249,115,22,0.12)] group-hover:-translate-y-0.5">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={course.image}
@@ -60,9 +60,9 @@ export function CoursesPreview() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 relative">
                   <h3 className="font-heading text-xl font-bold text-primary mb-2">{course.title}</h3>
-                  <p className="text-neutral-muted text-sm line-clamp-2">{course.shortDescription}</p>
+                  <p className="text-neutral-muted/80 text-sm line-clamp-2">{course.shortDescription}</p>
                 </div>
               </Card>
             </Link>

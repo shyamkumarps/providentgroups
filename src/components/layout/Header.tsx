@@ -69,13 +69,14 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative text-sm font-medium transition-all duration-300 px-3 py-1.5 ${
+                  className={`group relative text-sm font-medium transition-all duration-300 px-3 py-1.5 ${
                     scrolled
                       ? `header-nav-text-scrolled ${isActive ? "text-primary font-semibold" : "text-primary/70 hover:text-primary"}`
                       : `header-nav-text-transparent ${isActive ? "text-white font-semibold" : "text-white/90 hover:text-white"}`
                   }`}
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" aria-hidden />
                   {isActive && (
                     <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full transition-all duration-300 ${
                       scrolled

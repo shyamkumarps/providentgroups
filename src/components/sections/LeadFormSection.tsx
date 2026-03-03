@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { gsap } from "gsap";
 import { useStaggerReveal } from "@/hooks/useStaggerReveal";
 import { useSvgDraw } from "@/hooks/useSvgDraw";
 import { getCourses } from "@/lib/data";
@@ -17,6 +18,7 @@ export function LeadFormSection() {
   const [course, setCourse] = useState("");
   const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const formContainerRef = useRef<HTMLDivElement>(null);
   const linesDrawRef = useRef<HTMLDivElement>(null);
 
   useStaggerReveal(formRef, { childSelector: ".form-field", y: 24, stagger: 0.08 });
@@ -46,6 +48,13 @@ export function LeadFormSection() {
         setToast({ message: "Thank you! We'll contact you soon.", type: "success" });
         form.reset();
         setCourse("");
+        if (formContainerRef.current) {
+          gsap.fromTo(
+            formContainerRef.current,
+            { scale: 1 },
+            { scale: 1.01, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }
+          );
+        }
       } else {
         setToast({ message: data.error || "Something went wrong.", type: "error" });
       }
@@ -65,7 +74,7 @@ export function LeadFormSection() {
           title="Speak with Our Consultants Today!"
           subtitle="Fill in your details and we'll get back to you shortly."
         />
-        <div className="relative rounded-3xl border border-primary/10 bg-white/95 shadow-xl shadow-primary/5 p-5 md:p-7 overflow-visible">
+        <div ref={formContainerRef} className="relative rounded-3xl border border-primary/10 bg-white/95 shadow-card p-5 md:p-7 overflow-visible">
           <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none" aria-hidden>
             <div className="absolute inset-0 noise-overlay" aria-hidden />
             <div className="absolute -top-6 -left-6 w-28 h-28 rounded-full bg-accent/6 blur-2xl" aria-hidden />
@@ -88,7 +97,7 @@ export function LeadFormSection() {
               name="name"
               type="text"
               required
-              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent outline-none"
+              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-[0_0_0_3px_rgba(249,115,22,0.15)] outline-none transition-shadow duration-200"
               placeholder="Your name"
             />
           </div>
@@ -99,7 +108,7 @@ export function LeadFormSection() {
               name="phone"
               type="tel"
               required
-              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent outline-none"
+              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-[0_0_0_3px_rgba(249,115,22,0.15)] outline-none transition-shadow duration-200"
               placeholder="+91 98765 43210"
             />
           </div>
@@ -110,7 +119,7 @@ export function LeadFormSection() {
               name="email"
               type="email"
               required
-              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent outline-none"
+              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-[0_0_0_3px_rgba(249,115,22,0.15)] outline-none transition-shadow duration-200"
               placeholder="you@example.com"
             />
           </div>
@@ -132,7 +141,7 @@ export function LeadFormSection() {
               id="message"
               name="message"
               rows={3}
-              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent outline-none resize-none"
+              className="w-full rounded-xl border border-neutral-muted/30 bg-white px-4 py-3 text-primary focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-[0_0_0_3px_rgba(249,115,22,0.15)] outline-none resize-none transition-shadow duration-200"
               placeholder="Any specific questions?"
             />
           </div>
@@ -140,7 +149,7 @@ export function LeadFormSection() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full py-4"
+            className="w-full py-4 hover:shadow-[0_4px_20px_rgba(249,115,22,0.4)]"
           >
             {loading ? (
               <>

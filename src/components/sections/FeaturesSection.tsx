@@ -108,7 +108,7 @@ export function FeaturesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-background relative overflow-hidden -mt-3 pt-14 md:pt-16 lg:pt-20 pb-16 md:pb-20 lg:pb-24">
+    <section ref={sectionRef} className="section-padding bg-background relative overflow-hidden -mt-3">
       <div className="absolute inset-0 bg-dots-grid opacity-[0.18] pointer-events-none" aria-hidden />
       <div className="absolute inset-0 noise-overlay pointer-events-none" aria-hidden />
       <div className="container mx-auto px-4 max-w-6xl relative">
@@ -121,7 +121,7 @@ export function FeaturesSection() {
             <Link
               key={f.title}
               href={f.href}
-              className="feature-card group relative rounded-3xl p-8 bg-white border border-primary/5 overflow-hidden transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 feature-card-shadow hover:feature-card-shadow-hover hover:-translate-y-1 hover:border-primary/10"
+              className="feature-card group relative rounded-3xl p-8 bg-white border border-primary/5 overflow-hidden transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 feature-card-shadow hover:feature-card-shadow-hover hover:-translate-y-0.5 hover:border-primary/10"
             >
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary/20 rounded-t-3xl" aria-hidden />
               <div className="absolute inset-0 noise-overlay pointer-events-none rounded-3xl" aria-hidden />

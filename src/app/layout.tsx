@@ -3,6 +3,7 @@ import { fontSans, fontHeading } from "@/lib/fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { ScrollDirectionButton } from "@/components/layout/ScrollDirectionButton";
 import { LenisProvider } from "@/components/layout/LenisProvider";
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default function RootLayout({
           <main className="min-h-screen pt-16">{children}</main>
           <Footer />
           <WhatsAppFloat />
+          <ScrollDirectionButton />
         </LenisProvider>
       </body>
     </html>

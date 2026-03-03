@@ -39,7 +39,7 @@ export function StatsSection() {
   );
 
   return (
-    <section className="section-padding pb-16 md:pb-20 bg-gradient-to-br from-primary to-primary-dark text-white relative z-0 overflow-hidden -mt-1">
+    <section className="section-padding pb-16 md:pb-20 bg-gradient-to-br from-primary via-primary-dark to-[#094843] text-white relative z-0 overflow-hidden -mt-1">
       {/* Top waves: transparent area so section above shows through; white wave shapes cut into teal */}
       <div
         className="absolute -top-1 left-0 w-full h-12 sm:h-14 md:h-16 overflow-hidden z-20 pointer-events-none"
@@ -59,7 +59,32 @@ export function StatsSection() {
         <div ref={containerRef} className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {site.stats.map((stat) => (
             <div key={stat.label} className="stat-item text-center">
-              <div className="counter-wrap text-4xl md:text-5xl font-bold text-accent mb-2">
+              <div className="flex justify-center mb-2">
+                <span className="inline-flex text-white/80 animate-float" style={{ animationDelay: stat.label.length % 2 === 0 ? "0s" : "-1.5s" }} aria-hidden>
+                  {stat.label.includes("Years") && (
+                    <svg className="w-8 h-8 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )}
+                  {stat.label.includes("University") && (
+                    <svg className="w-8 h-8 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  )}
+                  {stat.label.includes("Admissions") && (
+                    <svg className="w-8 h-8 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                  )}
+                  {stat.label.includes("Personalized") && (
+                    <svg className="w-8 h-8 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )}
+                </span>
+              </div>
+              <div className="counter-wrap text-5xl md:text-6xl font-bold text-accent mb-2">
                 <Counter
                   endValue={stat.value}
                   suffix={stat.suffix}

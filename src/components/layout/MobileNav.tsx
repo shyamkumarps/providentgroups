@@ -44,6 +44,7 @@ const navIcons: Record<string, React.ReactNode> = {
 export function MobileNav({ isOpen, onClose, nav }: MobileNavProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const navLinksRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -56,7 +57,11 @@ export function MobileNav({ isOpen, onClose, nav }: MobileNavProps) {
       document.body.style.right = "0";
       requestAnimationFrame(() => {
         if (overlayRef.current) gsap.to(overlayRef.current, { opacity: 1, duration: 0.2 });
-        if (panelRef.current) gsap.fromTo(panelRef.current, { x: "100%" }, { x: 0, duration: 0.3, ease: "power2.out" });
+        if (panelRef.current) gsap.fromTo(panelRef.current, { x: "100%" }, { x: 0, duration: 0.35, ease: "power3.out" });
+        if (navLinksRef.current) {
+          const links = navLinksRef.current.querySelectorAll("a");
+          gsap.fromTo(links, { opacity: 0, x: 12 }, { opacity: 1, x: 0, duration: 0.3, stagger: 0.05, delay: 0.12, ease: "power3.out" });
+        }
       });
     } else {
       const scrollY = document.body.style.top ? Math.abs(parseInt(document.body.style.top, 10)) : 0;
@@ -124,7 +129,7 @@ export function MobileNav({ isOpen, onClose, nav }: MobileNavProps) {
         </div>
         <div className="mobile-nav-scroll flex flex-col flex-1 min-h-0 px-3 min-[375px]:px-4 pb-4 min-[375px]:pb-6 overflow-y-auto overflow-x-hidden overscroll-contain">
           <p className="text-white/50 text-[10px] min-[360px]:text-xs font-semibold uppercase tracking-wider px-3 min-[375px]:px-4 mb-1.5 min-[360px]:mb-2">Menu</p>
-          <nav className="flex flex-col gap-0.5 min-[375px]:gap-1">
+          <nav ref={navLinksRef} className="flex flex-col gap-0.5 min-[375px]:gap-1">
             {nav.map((item) => (
               <Link
                 key={item.href}
@@ -159,7 +164,7 @@ export function MobileNav({ isOpen, onClose, nav }: MobileNavProps) {
               onClick={onClose}
               className="flex items-center justify-center gap-1.5 min-[375px]:gap-2 w-full rounded-xl px-4 min-[375px]:px-6 py-3 min-[375px]:py-3.5 text-sm min-[360px]:text-base font-semibold bg-accent text-white hover:bg-accent-light shadow-lg shadow-accent/25 hover:shadow-accent/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
             >
-              <span>Book Consultation</span>
+              <span>Book Free Consultation</span>
               <svg className="w-3.5 h-3.5 min-[375px]:w-4 min-[375px]:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>

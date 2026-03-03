@@ -5,8 +5,6 @@ import { gsap } from "gsap";
 import { getTestimonials } from "@/lib/data";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Card } from "@/components/ui/Card";
-
 const testimonials = getTestimonials();
 
 export function TestimonialsSection() {
@@ -48,8 +46,8 @@ export function TestimonialsSection() {
           subtitle="Real students, real results. Hear from those we've helped."
         />
         <div ref={containerRef} className="relative mt-8">
-          <div ref={quoteIconRef} className="absolute -top-2 left-1/2 -translate-x-1/2 text-accent/20 pointer-events-none" aria-hidden>
-            <svg viewBox="0 0 80 80" className="w-16 h-16 md:w-20 md:h-20" fill="currentColor">
+          <div ref={quoteIconRef} className="absolute -top-2 left-1/2 -translate-x-1/2 text-accent/30 pointer-events-none" aria-hidden>
+            <svg viewBox="0 0 80 80" className="w-20 h-20 md:w-24 md:h-24" fill="currentColor">
               <path d="M0 40C0 24 8 8 24 8c8 0 16 8 16 24s-8 24-16 24c-8 0-16-8-16-24zm40 0C40 24 48 8 64 8c8 0 16 8 16 24s-8 24-16 24c-8 0-16-8-16-24z" />
             </svg>
           </div>
@@ -61,7 +59,7 @@ export function TestimonialsSection() {
                 </div>
               </div>
             </div>
-          <Card className="p-8 md:p-12 pt-14 md:pt-14 text-center relative overflow-hidden">
+          <div className="rounded-2xl p-8 md:p-12 pt-14 md:pt-14 text-center relative overflow-hidden bg-white/60 backdrop-blur-xl border border-white/40 shadow-card">
             <div className="absolute inset-0 noise-overlay pointer-events-none rounded-2xl" aria-hidden />
             <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-accent/8 blur-2xl pointer-events-none" aria-hidden />
             <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-primary/5 blur-xl pointer-events-none" aria-hidden />
@@ -71,7 +69,7 @@ export function TestimonialsSection() {
             <p className="text-neutral-muted text-sm mb-5">{t.role}</p>
             <p className="text-primary text-lg md:text-xl leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
             </div>
-          </Card>
+          </div>
           </div>
           <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, i) => (

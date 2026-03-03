@@ -12,6 +12,9 @@
   --scrollbar-track: #FEF3C7;
   --scrollbar-thumb: #0F766E;
   --scrollbar-thumb-hover: #0D5C56;
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --shadow-elevated: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
 @theme inline {
@@ -30,6 +33,50 @@
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Hero headline: refined partial highlight (55–65% height, highlighter stroke, premium feel) */
+.hero-headline-phrase {
+  --highlight-pct: 0;
+}
+.hero-headline-phrase::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  bottom: 6%;
+  height: 42%;
+  width: calc((100% - 4px) * var(--highlight-pct) / 100);
+  background: rgba(224, 118, 42, 0.72);
+  border-radius: 7px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  z-index: -1;
+}
+.hero-headline-text {
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  background: currentColor;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-cursor {
+    animation: none;
+  }
 }
 
 .animate-float { animation: float 5s ease-in-out infinite; }
@@ -161,12 +208,20 @@
   animation: cta-glow-pulse 2.5s ease-in-out infinite;
 }
 
-/* Feature cards: opaque surface with soft depth (teal structure) */
+/* Feature cards: premium layered depth (use theme shadow variables) */
 .feature-card-shadow {
-  box-shadow: 0 4px 20px rgba(15, 118, 110, 0.08), 0 1px 3px rgba(15, 118, 110, 0.06);
+  box-shadow: var(--shadow-card);
 }
 .feature-card-shadow-hover {
-  box-shadow: 0 12px 32px rgba(15, 118, 110, 0.12), 0 2px 8px rgba(15, 118, 110, 0.06);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Reusable card shadow utilities */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+.shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* Dot grid background (parent needs relative) */
@@ -297,6 +352,14 @@ body {
     rgba(15, 118, 110, 0.5) 35%,
     rgba(15, 118, 110, 0.45) 60%,
     rgba(15, 118, 110, 0.82) 100%
+  );
+}
+
+.gradient-hero-radial {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 30%,
+    rgba(15, 118, 110, 0.3) 100%
   );
 }
 

@@ -4,11 +4,14 @@ import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getSiteData } from "@/lib/data";
+
+if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 import { Button } from "@/components/ui/Button";
 import { useParallax } from "@/hooks/useParallax";
-import { useTextReveal } from "@/hooks/useTextReveal";
 import { useScrollTimeline } from "@/hooks/useScrollTimeline";
+import { prefersReducedMotion } from "@/lib/animations";
 
 const site = getSiteData();
 const { hero } = site;
@@ -30,16 +33,99 @@ export function HeroSection() {
   const slideRefs = useRef<HTMLDivElement[]>([]);
 
   useParallax(bgRef, 0.25);
-  useTextReveal(headlineRef, { mode: "words", y: 28, stagger: 0.04, start: "top 88%" });
   useScrollTimeline(sectionRef, (tl) => {
     const content = contentRef.current;
     if (content) tl.fromTo(content, { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.96, duration: 1 });
   }, { start: "top top", end: "bottom top", scrub: 1 });
 
+  /* One continuous marker on "Expert Career Guidance"; runs when hero section becomes visible (GSAP ScrollTrigger) */
+  const HIGHLIGHT_PHRASE = "Expert Career Guidance";
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    if (subRef.current) tl.fromTo(subRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 0.2);
-    if (ctaRef.current) tl.fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
+    const el = headlineRef.current;
+    const section = sectionRef.current;
+    if (!el || !section) return;
+
+    const text = hero.headline;
+    const rest = text.replace(HIGHLIGHT_PHRASE, "").trimStart();
+
+    if (prefersReducedMotion()) {
+      const line1 = document.createElement("span");
+      line1.style.display = "block";
+      line1.textContent = HIGHLIGHT_PHRASE + " \u0026";
+      const line2 = document.createElement("span");
+      line2.style.display = "block";
+      line2.textContent = rest ? rest.replace(/^\s*&\s*/, "") : "";
+      el.appendChild(line1);
+      if (line2.textContent) el.appendChild(line2);
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      if (subRef.current) tl.fromTo(subRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 0.2);
+      if (ctaRef.current) tl.fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
+      return;
+    }
+
+    el.textContent = "";
+    const line1Wrap = document.createElement("span");
+    line1Wrap.style.display = "block";
+    const phraseWrap = document.createElement("span");
+    phraseWrap.className = "hero-headline-phrase";
+    phraseWrap.style.cssText = "display:inline-block;position:relative;overflow:visible;vertical-align:top;";
+    phraseWrap.style.setProperty("--highlight-pct", "0");
+
+    const phraseText = document.createElement("span");
+    phraseText.className = "hero-headline-text";
+    phraseText.style.cssText = "color:inherit;";
+    phraseText.textContent = HIGHLIGHT_PHRASE;
+    phraseWrap.appendChild(phraseText);
+
+    line1Wrap.appendChild(phraseWrap);
+    const ampersandSpan = document.createElement("span");
+    ampersandSpan.textContent = " \u0026";
+    line1Wrap.appendChild(ampersandSpan);
+    el.appendChild(line1Wrap);
+
+    const line2Wrap = document.createElement("span");
+    line2Wrap.style.display = "block";
+    line2Wrap.textContent = rest ? rest.replace(/^\s*&\s*/, "") : "";
+    if (line2Wrap.textContent) el.appendChild(line2Wrap);
+
+    let firstRun = true;
+    const runHighlight = () => {
+      if (firstRun) {
+        firstRun = false;
+        gsap.set(phraseText, { opacity: 0.72 });
+        const tl = gsap.timeline();
+        tl.to(phraseWrap, { "--highlight-pct": 100, duration: 1, ease: "power3.out" }, 0);
+        tl.to(phraseText, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.2);
+      } else {
+        gsap.to(phraseWrap, { "--highlight-pct": 100, duration: 1, ease: "power3.out" });
+      }
+    };
+    const resetHighlight = () => {
+      gsap.set(phraseWrap, { "--highlight-pct": 0 });
+    };
+
+    const st = ScrollTrigger.create({
+      trigger: section,
+      start: "top 85%",
+      onEnter: runHighlight,
+      onEnterBack: () => {
+        resetHighlight();
+        requestAnimationFrame(() => runHighlight());
+      },
+      onLeaveBack: resetHighlight,
+    });
+
+    runHighlight();
+
+    const subCtaTl = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.5 });
+    if (subRef.current) subCtaTl.fromTo(subRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 0);
+    if (ctaRef.current) subCtaTl.fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
+
+    return () => {
+      st.kill();
+      subCtaTl.kill();
+      gsap.killTweensOf(phraseWrap);
+    };
   }, []);
 
   useEffect(() => {
@@ -86,6 +172,7 @@ export function HeroSection() {
             </div>
           ))}
           <div className="absolute inset-0 gradient-hero-overlay" />
+          <div className="absolute inset-0 gradient-hero-radial pointer-events-none" aria-hidden />
         </div>
       </div>
       {/* Floating decorative shapes */}
@@ -94,10 +181,10 @@ export function HeroSection() {
         <span className="absolute top-[60%] right-[15%] w-2 h-2 rounded-full bg-accent/30 animate-float-slow" style={{ animationDelay: "-2s" }} />
         <span className="absolute bottom-[25%] left-[20%] w-4 h-4 rounded-full border border-white/25 animate-float-slower" style={{ animationDelay: "-1s" }} />
       </div>
-      <div ref={contentRef} className="relative z-10 container mx-auto px-4 pt-32 pb-24 text-center max-w-4xl">
+      <div ref={contentRef} className="relative z-10 container mx-auto px-4 pt-32 pb-24 text-center max-w-5xl">
         <h1
           ref={headlineRef}
-          className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
+          className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6"
         >
           {hero.headline}
         </h1>

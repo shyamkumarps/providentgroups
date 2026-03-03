@@ -36,7 +36,7 @@ export function useCountUp(
       tween = gsap.to(obj, {
         value: endValue,
         duration,
-        ease: "power2.out",
+        ease: "power3.out",
         onUpdate: updateText,
       });
     };
